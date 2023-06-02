@@ -1,6 +1,7 @@
 package com.example.springbootproj1.Controller;
 
 import com.example.springbootproj1.controller.UserController;
+import com.example.springbootproj1.entity.Applierinfo;
 import com.example.springbootproj1.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,12 @@ public class UserControllerTest {
         map.put("admin","系统管理员");
         List list = userController.queryuser(map);
         System.out.println(list);
+    }
+
+    @Test
+    void queryapplierinfo(){
+        List<Applierinfo> listapplierinfo = userController.queryapplierinfo();
+        System.out.println(listapplierinfo.size());
+        System.out.println(listapplierinfo.get(1).getClass());
     }
 }
