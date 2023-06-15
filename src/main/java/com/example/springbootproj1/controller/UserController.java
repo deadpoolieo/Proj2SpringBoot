@@ -1,10 +1,7 @@
 package com.example.springbootproj1.controller;
 
 import com.example.springbootproj1.entity.*;
-import com.example.springbootproj1.service.ApplierinfoService;
-import com.example.springbootproj1.service.NoticeService;
-import com.example.springbootproj1.service.SaveapplicationService;
-import com.example.springbootproj1.service.UserService;
+import com.example.springbootproj1.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +21,10 @@ public class UserController {
     NoticeService noticeService;
     @Autowired
     SaveapplicationService saveapplicationService;
+    @Autowired
+    SaveinvestmentplanService saveinvestmentplanService;
+    @Autowired
+    SaveimplementationplanService saveimplementationplanService;
 
     @PostMapping(value = "queryuser")
     public List<Idrelateadmin> queryuser(@RequestBody Map<String,String> map){
@@ -46,5 +47,15 @@ public class UserController {
     public ResponseEntity<?> addapplication(@RequestBody Newapplication newapplication){
         saveapplicationService.saveapplication(newapplication);
         return ResponseEntity.ok("保存に成功しました");
+    }
+    @PostMapping(value = "addimplementationplan")
+    public ResponseEntity<?> addimplementationplan(@RequestBody Implementationplan implementationplan){
+        saveimplementationplanService.saveimplementationplan(implementationplan);
+        return  ResponseEntity.ok("保存に成功しました");
+    }
+    @PostMapping(value = "addinvestmentplan")
+    public ResponseEntity<?> addinvestmentplan(@RequestBody Investmentplan investmentplan){
+        saveinvestmentplanService.saveinvestmentplan(investmentplan);
+        return  ResponseEntity.ok("保存に成功しました");
     }
 }
